@@ -3,12 +3,11 @@
 #include "Food.hpp"
 
 
-const int WIDTH = 1024;
-const int HEIGHT = 1024;
+const size_t WIDTH = 1024;
+const size_t HEIGHT = 1024;
 
 int main(){
-    std::cout << "Hello Snake World\n";
-    
+    //SFML test    
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SSSNAKE!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Blue);
@@ -29,7 +28,9 @@ int main(){
 
         window.clear();
         window.draw(shape);
-        food.draw(window);     
+
+        food.setPosition(WIDTH/2, HEIGHT/2);
+        food.draw(window);
         window.display();
     }
 

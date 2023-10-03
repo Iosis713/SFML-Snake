@@ -18,6 +18,7 @@ void Food::draw(sf::RenderWindow& i_window)
 {
     sf::CircleShape circle(50);
     circle.setFillColor(sf::Color::Red);
+    circle.setPosition(position_.first, position_.second);
     i_window.draw(circle);
 }
 

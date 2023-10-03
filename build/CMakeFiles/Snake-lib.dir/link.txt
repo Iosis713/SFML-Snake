@@ -1,2 +1,0 @@
-/usr/bin/ar qc libSnake-lib.a CMakeFiles/Snake-lib.dir/Food.cpp.o
-/usr/bin/ranlib libSnake-lib.a
