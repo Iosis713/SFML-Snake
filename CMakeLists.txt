@@ -6,17 +6,19 @@ set(SFML_LIB    sfml-graphics
                 sfml-window
                 sfml-system)
 
-#add_library(${PROJECT_NAME}-lib STATIC ${SFML_LIB})
+set(SRC Food.cpp)
+
+add_library(${PROJECT_NAME}-lib STATIC ${SRC})
 add_executable(${PROJECT_NAME} main.cpp)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${SFML_LIB})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${SFML_LIB} ${PROJECT_NAME}-lib)
 target_compile_options(${PROJECT_NAME} PRIVATE ${FLAGS})
-#target_compile_options(${PROJECT_NAME}-lib PRIVATE ${FLAGS})
+target_compile_options(${PROJECT_NAME}-lib PRIVATE ${FLAGS})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-                        CXX_STANDARD 20
-                        CXX_STANDARD_REQUIRED ON)
+                      CXX_STANDARD 20
+                      CXX_STANDARD_REQUIRED ON)
 
-#set_target_properties(${PROJECT_NAME}-lib PROPERTIES
-                        #CXX_STANDARD 20
-                        #CXX_STANDARD_REQUIRED ON)
+set_target_properties(${PROJECT_NAME}-lib PROPERTIES
+                      CXX_STANDARD 20
+                      CXX_STANDARD_REQUIRED ON)

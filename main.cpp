@@ -1,12 +1,20 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
+#include "Food.hpp"
+
+
+const int WIDTH = 1024;
+const int HEIGHT = 1024;
 
 int main(){
     std::cout << "Hello Snake World\n";
     
-    sf::RenderWindow window(sf::VideoMode(200,200), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SSSNAKE!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Blue);
+
+    Food food;
+    
 
     while (window.isOpen())
     {
@@ -17,9 +25,11 @@ int main(){
                     window.close();
                }
             }
+    
 
         window.clear();
         window.draw(shape);
+        food.draw(window);     
         window.display();
     }
 
