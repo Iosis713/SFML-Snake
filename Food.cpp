@@ -8,7 +8,7 @@ void Food::setIsAlive(bool life)
 
 bool Food::getIsAlive() {return isAlive;}
 float Food::getRadius() {return radius;}
-void Food::setPosition(size_t xPos,size_t yPos)
+void Food::setPosition(const size_t& xPos,const size_t& yPos)
 {
     position_.first = xPos;
     position_.second = yPos;
