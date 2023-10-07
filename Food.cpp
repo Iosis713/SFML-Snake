@@ -7,6 +7,7 @@ void Food::setIsAlive(bool life)
 
 
 bool Food::getIsAlive() {return isAlive;}
+float Food::getRadius() {return radius;}
 void Food::setPosition(size_t xPos,size_t yPos)
 {
     position_.first = xPos;
@@ -16,16 +17,15 @@ std::pair<size_t, size_t> Food::getPosition() {return position_;}
 
 void Food::draw(sf::RenderWindow& i_window)
 {
-    sf::CircleShape circle(50);
+    sf::CircleShape circle(getRadius());
+    circle.setOrigin(getRadius(), getRadius());
     circle.setFillColor(sf::Color::Red);
     circle.setPosition(position_.first, position_.second);
     i_window.draw(circle);
 }
 
-//KofyBrek pacman
-//sf::CircleShape circle(50);
-//circle.setFillColor(sf::Color::Blue);
-
-//shape_.::setFillColor(sf::Color::Red);
-
+void Food::kill()
+{
+    setIsAlive(false);
+}
 
