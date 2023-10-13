@@ -53,10 +53,12 @@ int main(){
         else if(status == "quit"){
             return 0;
         }
-        */
+        
         snake.setPosition(snake.getPosition().first + snake.speed_,
                           snake.getPosition().second);
+        */
 
+        snake.update();
 
         refresh();  
     }
