@@ -4,8 +4,6 @@
 class Snake : public Food
 {
 protected:
-    const float size_ = 100.0;
-    //std::pair<size_t, size_t> position_ {100, 100};
     enum class Direction {
         Up,
         Down,
@@ -13,11 +11,13 @@ protected:
         Right
     };
     Direction direction_ = Direction::Right;
+    const int speed_;
 
 public:
     void draw(sf::RenderWindow& i_window);
-    Snake(const size_t speed);
-    const size_t speed_;
-    void update();
+    Snake(const int speed, const int size);
+    void update(const int& width, const int& height);
+    void checkIfInsideTheMap(const int& mapWidth, const int& mapHeight);
+
 };
 

@@ -5,22 +5,22 @@
 class Food
 {
 protected:
-    std::pair<size_t, size_t> position_;
+    std::pair<int, int> position_;
     bool isAlive_ = true;
-    const float size_ = 50;
+    const int size_ = 50;
     //sf::CircleShape circle2;
 
 public:
-    Food();
+    Food(const int size);
     ~Food() = default;
 
     void draw(sf::RenderWindow& i_window);
     void setIsAlive(bool life);    
-    void setPosition(const size_t& xPos,const size_t& yPos);
+    void setPosition(const int& xPos,const int& yPos);
     float getSize();    
 
     void kill();
     bool getIsAlive();
-    std::pair<size_t, size_t> getPosition();
+    std::pair<int, int> getPosition();
 };
 
