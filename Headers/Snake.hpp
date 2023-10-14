@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Food.hpp"
 
 class Snake : public Food
@@ -12,11 +13,13 @@ protected:
     };
     Direction direction_ = Direction::Right;
     const int speed_;
+    size_t lenght_ = 3;
 
 public:
     void draw(sf::RenderWindow& i_window);
     Snake(const int speed, const int size);
-    void update(const int& width, const int& height);
+    void move(const int& width, const int& height, const int& cellSize);
+    void update();
     void checkIfInsideTheMap(const int& mapWidth, const int& mapHeight);
 
 };

@@ -3,7 +3,7 @@
 Food::Food(const int size)
     : size_(size)
 {
-    position_ = {50, 170};
+    position_ = {40, 160};
 }
 
 
