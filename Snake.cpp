@@ -59,29 +59,29 @@ void Snake::move(const int& width, const int& height, const int& cellSize)
 
 void Snake::checkIfInsideTheMap(const int& mapWidth, const int& mapHeight)
 {
-    if(position_.first > -0.5 * size_ && 
-      position_.first < mapWidth + 0.5 * size_ &&
-      position_.second > -0.5 * size_ && 
-      position_.second < mapHeight + 0.5*size_){}
+    if(position_.first > 0.5 * size_ && 
+      position_.first < mapWidth - 0.5 * size_ &&
+      position_.second > +0.5 * size_ && 
+      position_.second < mapHeight - 0.5*size_){}
 
-    else if(position_.first < -0.5 * size_)
+    else if(position_.first < 0.5 * size_)
     {
-        position_.first = mapWidth + 0.5 * size_; //0.5*size so it does not "teleport"
+        position_.first = mapWidth - 0.5 * size_; //0.5*size so it does not "teleport"
     }
     
-    else if(position_.first > mapWidth + 0.5 * size_)
+    else if(position_.first > mapWidth - 0.5 * size_)
     {
-        position_.first = -0.5 * size_;
+        position_.first = 0.5 * size_;
     }
 
-    else if(position_.second < -0.5 * size_)
+    else if(position_.second < 0.5 * size_)
     {
-        position_.second = mapHeight + 0.5 * size_;
+        position_.second = mapHeight - 0.5 * size_;
     }
 
-    else if(position_.second > mapHeight + 0.5 * size_)
+    else if(position_.second > mapHeight - 0.5 * size_)
     {
-        position_.second = -0.5 * size_;
+        position_.second = 0.5 * size_;
     }
 }
 
