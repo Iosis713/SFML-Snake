@@ -31,8 +31,31 @@ void Food::draw(sf::RenderWindow& i_window)
     i_window.draw(circle);
 }
 
-void Food::kill()
-{
+void Food::kill(const int& mapWidth, const int& mapHeight, const int& cellSize)
+{   
+    /*
+    int getRandom(const int& upperLimit); 
+    int getRandom(const int& upperLimit)
+        {
+            std::random_device randDev;
+            std::mt19937 randGenerator(randDev());
+            std::uniform_int_distribution<int> dist((int) 0, upperLimit);
+            return dist(randGenerator);
+        }
+    */
     setIsAlive(false);
+
+    setPosition(getRandom(mapWidth/cellSize - 1) * cellSize + cellSize/2,
+                getRandom(mapHeight/cellSize - 1) * cellSize + cellSize/2);
+    
+    setIsAlive(true);
+}
+
+int Food::getRandom(const int& upperLimit)
+{
+    std::random_device randDev;
+    std::mt19937 randGenerator(randDev());
+    std::uniform_int_distribution<int> dist((int) 0, upperLimit);
+    return dist(randGenerator);
 }
 

@@ -6,11 +6,18 @@ Snake::Snake(const int speed, const int size)
 {};
 
 void Snake::draw(sf::RenderWindow& i_window)
-{
-    sf::RectangleShape rectangle(sf::Vector2f(getSize(), getSize()));
-    rectangle.setOrigin(getSize() * 0.5, getSize() * 0.5);
+{   
+    sf::RectangleShape rectangleBack(sf::Vector2f(getSize(), getSize()));
+    rectangleBack.setOrigin(getSize() * 0.5, getSize() * 0.5);
+    rectangleBack.setFillColor(sf::Color::Yellow);
+    rectangleBack.setPosition(position_.first, position_.second);
+
+    sf::RectangleShape rectangle(sf::Vector2f(getSize()*0.8 , getSize()*0.8));
+    rectangle.setOrigin(getSize() * 0.4 , getSize() * 0.4);
     rectangle.setFillColor(sf::Color::Green);
     rectangle.setPosition(position_.first, position_.second);
+    
+    i_window.draw(rectangleBack);
     i_window.draw(rectangle);
 }
 
@@ -85,3 +92,16 @@ void Snake::checkIfInsideTheMap(const int& mapWidth, const int& mapHeight)
     }
 }
 
+bool Snake::isFoodAte(const int& mapWidth, const int& mapHeight, const int& cellSize, Food& food)
+{
+    if(getPosition() == food.getPosition())
+    {
+        lenght_++;
+        food.kill(mapWidth, mapHeight, cellSize);    
+        return true;
+    }
+
+    else{return false;}
+}
+
+size_t Snake::getLenght(){ return lenght_; }

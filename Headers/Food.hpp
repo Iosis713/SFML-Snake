@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <random>
 #include <SFML/Graphics.hpp>
 
 class Food
@@ -19,8 +20,9 @@ public:
     void setPosition(const int& xPos,const int& yPos);
     float getSize();    
 
-    void kill();
+    void kill(const int& mapWidth, const int& mapHeight, const int& cellSize);
     bool getIsAlive();
     std::pair<int, int> getPosition();
+    int getRandom(const int& upperLimit);
 };
 

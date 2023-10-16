@@ -19,8 +19,10 @@ public:
     void draw(sf::RenderWindow& i_window);
     Snake(const int speed, const int size);
     void move(const int& width, const int& height, const int& cellSize);
+    size_t getLenght();
     void update();
     void checkIfInsideTheMap(const int& mapWidth, const int& mapHeight);
+    bool isFoodAte(const int& mapWidth, const int& mapHeight, const int& cellSize, Food& food);
 
 };
 
