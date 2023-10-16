@@ -1,17 +1,18 @@
 #include "Headers/Snake.hpp"
 
-Snake::Snake(const int speed, const int size)
-    : Food(size)
+Snake::Snake(int xPos, int yPos, const int size, const int speed)
+    : Food(xPos, yPos, size)
     , speed_(speed)
 {};
 
 void Snake::draw(sf::RenderWindow& i_window)
 {   
+    //Yellow circuit
     sf::RectangleShape rectangleBack(sf::Vector2f(getSize(), getSize()));
     rectangleBack.setOrigin(getSize() * 0.5, getSize() * 0.5);
     rectangleBack.setFillColor(sf::Color::Yellow);
     rectangleBack.setPosition(position_.first, position_.second);
-
+    //Green core
     sf::RectangleShape rectangle(sf::Vector2f(getSize()*0.8 , getSize()*0.8));
     rectangle.setOrigin(getSize() * 0.4 , getSize() * 0.4);
     rectangle.setFillColor(sf::Color::Green);
@@ -60,7 +61,6 @@ void Snake::move(const int& width, const int& height, const int& cellSize)
             position_.first += speed_ * cellSize;
             break;
     }
-
     checkIfInsideTheMap(width, height);
 }
 
@@ -69,7 +69,7 @@ void Snake::checkIfInsideTheMap(const int& mapWidth, const int& mapHeight)
     if(position_.first > 0.5 * size_ && 
       position_.first < mapWidth - 0.5 * size_ &&
       position_.second > +0.5 * size_ && 
-      position_.second < mapHeight - 0.5*size_){}
+      position_.second < mapHeight - 0.5 * size_){}
 
     else if(position_.first < 0.5 * size_)
     {
@@ -100,8 +100,8 @@ bool Snake::isFoodAte(const int& mapWidth, const int& mapHeight, const int& cell
         food.kill(mapWidth, mapHeight, cellSize);    
         return true;
     }
-
     else{return false;}
 }
 
 size_t Snake::getLenght(){ return lenght_; }
+

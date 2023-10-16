@@ -3,7 +3,6 @@
 
 #include <chrono>
 #include <iostream>
-//#include <random>
 #include <thread>
 
 const int CELL_SIZE = 40;
@@ -11,17 +10,12 @@ const unsigned FRAME_DURATION = 200;
 const int WIDTH = 1280;
 const int HEIGHT = 800;
 
-
-//int getRandom(const int& lowerLimit, const int& upperLimit);
-//auto refresh = [](){using namespace std::chrono_literals;
-//                      std::this_thread::sleep_for(100ms);};
-
 int main(){  
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SNAKE");
 
     std::string status;
-    Food food(CELL_SIZE/2);
-    Snake snake(1, CELL_SIZE);
+    Food food(20, 140, CELL_SIZE/2);
+    Snake snake(60, 180, CELL_SIZE, 1);
     
     //variable for screen refreshing
     std::chrono::time_point<std::chrono::steady_clock> previousTime;
@@ -45,8 +39,7 @@ int main(){
         do
         {
             snake.update();
-            deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - previousTime).count();
-        
+            deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - previousTime).count();   
         }while (FRAME_DURATION > deltaTime);
 
         snake.isFoodAte(WIDTH, HEIGHT, CELL_SIZE, food);
@@ -55,19 +48,7 @@ int main(){
         snake.draw(window);
        
         window.display();
-     
     }
-
     return 0;
 }
-
-/*************************************************************************************/
-
-/*int getRandom(const int& lowerLimit, const int& upperLimit)
-{
-    std::random_device randDev;
-    std::mt19937 randGenerator(randDev());
-    std::uniform_int_distribution<int> dist((int) lowerLimit, upperLimit);
-    return dist(randGenerator);
-}*/
 

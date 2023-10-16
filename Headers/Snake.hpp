@@ -17,7 +17,7 @@ protected:
 
 public:
     void draw(sf::RenderWindow& i_window);
-    Snake(const int speed, const int size);
+    Snake(int xPos, int yPos, const int size, const int speed);
     void move(const int& width, const int& height, const int& cellSize);
     size_t getLenght();
     void update();

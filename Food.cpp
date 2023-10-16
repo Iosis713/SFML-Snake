@@ -1,17 +1,14 @@
 #include "Headers/Food.hpp"
 
-Food::Food(const int size)
-    : size_(size)
-{
-    position_ = {20, 140};
-}
-
+Food::Food(int xPos, int yPos, const int size)
+    : position_(xPos, yPos)
+    , size_(size)
+{}
 
 void Food::setIsAlive(bool life)
 {
     isAlive_ = life;
 }
-
 
 bool Food::getIsAlive() {return isAlive_;}
 float Food::getSize() {return size_;}
@@ -33,21 +30,9 @@ void Food::draw(sf::RenderWindow& i_window)
 
 void Food::kill(const int& mapWidth, const int& mapHeight, const int& cellSize)
 {   
-    /*
-    int getRandom(const int& upperLimit); 
-    int getRandom(const int& upperLimit)
-        {
-            std::random_device randDev;
-            std::mt19937 randGenerator(randDev());
-            std::uniform_int_distribution<int> dist((int) 0, upperLimit);
-            return dist(randGenerator);
-        }
-    */
     setIsAlive(false);
-
     setPosition(getRandom(mapWidth/cellSize - 1) * cellSize + cellSize/2,
                 getRandom(mapHeight/cellSize - 1) * cellSize + cellSize/2);
-    
     setIsAlive(true);
 }
 
