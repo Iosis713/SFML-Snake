@@ -18,11 +18,11 @@ protected:
 public:
     void draw(sf::RenderWindow& i_window);
     Snake(int xPos, int yPos, const int size, const int speed);
-    void move(const int& width, const int& height, const int& cellSize);
+    void move();
     size_t getLenght();
     void update();
-    void checkIfInsideTheMap(const int& mapWidth, const int& mapHeight);
-    bool isFoodAte(const int& mapWidth, const int& mapHeight, const int& cellSize, Food& food);
+    void checkIfInsideTheMap();
+    bool isFoodAte(Food& food);
 
 };
 

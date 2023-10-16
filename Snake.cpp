@@ -1,3 +1,4 @@
+#include "Headers/Global.hpp"
 #include "Headers/Snake.hpp"
 
 Snake::Snake(int xPos, int yPos, const int size, const int speed)
@@ -41,63 +42,63 @@ void Snake::update()
     }
 }
 
-void Snake::move(const int& width, const int& height, const int& cellSize)
+void Snake::move()
 {
     switch(direction_)
     {
         case Direction::Up:
-            position_.second -= speed_ * cellSize;
+            position_.second -= speed_ * CELL_SIZE;
             break;
 
         case Direction::Down:
-            position_.second += speed_ * cellSize;
+            position_.second += speed_ * CELL_SIZE;
             break;
 
         case Direction::Left:
-            position_.first -= speed_ * cellSize;
+            position_.first -= speed_ * CELL_SIZE;
             break;
 
         case Direction::Right:
-            position_.first += speed_ * cellSize;
+            position_.first += speed_ * CELL_SIZE;
             break;
     }
-    checkIfInsideTheMap(width, height);
+    checkIfInsideTheMap();
 }
 
-void Snake::checkIfInsideTheMap(const int& mapWidth, const int& mapHeight)
+void Snake::checkIfInsideTheMap()
 {
     if(position_.first > 0.5 * size_ && 
-      position_.first < mapWidth - 0.5 * size_ &&
+      position_.first < WIDTH - 0.5 * size_ &&
       position_.second > +0.5 * size_ && 
-      position_.second < mapHeight - 0.5 * size_){}
+      position_.second < HEIGHT - 0.5 * size_){}
 
     else if(position_.first < 0.5 * size_)
     {
-        position_.first = mapWidth - 0.5 * size_; //0.5*size so it does not "teleport"
+        position_.first = WIDTH - 0.5 * size_; //0.5*size so it does not "teleport"
     }
     
-    else if(position_.first > mapWidth - 0.5 * size_)
+    else if(position_.first > WIDTH - 0.5 * size_)
     {
         position_.first = 0.5 * size_;
     }
 
     else if(position_.second < 0.5 * size_)
     {
-        position_.second = mapHeight - 0.5 * size_;
+        position_.second = HEIGHT - 0.5 * size_;
     }
 
-    else if(position_.second > mapHeight - 0.5 * size_)
+    else if(position_.second > HEIGHT - 0.5 * size_)
     {
         position_.second = 0.5 * size_;
     }
 }
 
-bool Snake::isFoodAte(const int& mapWidth, const int& mapHeight, const int& cellSize, Food& food)
+bool Snake::isFoodAte(Food& food)
 {
     if(getPosition() == food.getPosition())
     {
         lenght_++;
-        food.kill(mapWidth, mapHeight, cellSize);    
+        food.kill();    
         return true;
     }
     else{return false;}

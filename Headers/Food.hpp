@@ -22,6 +22,6 @@ public:
     int getRandom(const int& upperLimit);
     float getSize();    
 
-    void kill(const int& mapWidth, const int& mapHeight, const int& cellSize);
+    void kill();
 };
 

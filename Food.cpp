@@ -1,4 +1,5 @@
 #include "Headers/Food.hpp"
+#include "Headers/Global.hpp"
 
 Food::Food(int xPos, int yPos, const int size)
     : position_(xPos, yPos)
@@ -28,11 +29,11 @@ void Food::draw(sf::RenderWindow& i_window)
     i_window.draw(circle);
 }
 
-void Food::kill(const int& mapWidth, const int& mapHeight, const int& cellSize)
+void Food::kill()
 {   
     setIsAlive(false);
-    setPosition(getRandom(mapWidth/cellSize - 1) * cellSize + cellSize/2,
-                getRandom(mapHeight/cellSize - 1) * cellSize + cellSize/2);
+    setPosition(getRandom(WIDTH/CELL_SIZE - 1) * CELL_SIZE + CELL_SIZE/2,
+                getRandom(HEIGHT/CELL_SIZE - 1) * CELL_SIZE + CELL_SIZE/2);
     setIsAlive(true);
 }
 

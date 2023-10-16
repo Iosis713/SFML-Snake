@@ -1,14 +1,10 @@
 #include "Headers/Food.hpp"
+#include "Headers/Global.hpp"
 #include "Headers/Snake.hpp"
 
 #include <chrono>
 #include <iostream>
 #include <thread>
-
-const int CELL_SIZE = 40;
-const unsigned FRAME_DURATION = 200;
-const int WIDTH = 1280;
-const int HEIGHT = 800;
 
 int main(){  
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SNAKE");
@@ -42,9 +38,9 @@ int main(){
             deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - previousTime).count();   
         }while (FRAME_DURATION > deltaTime);
 
-        snake.isFoodAte(WIDTH, HEIGHT, CELL_SIZE, food);
+        snake.isFoodAte(food);
         food.draw(window);        
-        snake.move(WIDTH, HEIGHT, CELL_SIZE);
+        snake.move();
         snake.draw(window);
        
         window.display();
