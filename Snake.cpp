@@ -4,9 +4,15 @@
 Snake::Snake(int xPos, int yPos, const int size, const int speed)
     : Food(xPos, yPos, size)
     , speed_(speed)
-{};
+{
+    tailPosition_.reserve(20);
+    for(size_t i = 0; i < lenght_; i++)
+    {
+        tailPosition_.push_back(position_);
+    }
+};
 
-void Snake::draw(sf::RenderWindow& i_window)
+void Snake::draw(sf::RenderWindow& i_window, sf::Color color)
 {   
     //Yellow circuit
     sf::RectangleShape rectangleBack(sf::Vector2f(getSize(), getSize()));
@@ -16,7 +22,7 @@ void Snake::draw(sf::RenderWindow& i_window)
     //Green core
     sf::RectangleShape rectangle(sf::Vector2f(getSize()*0.8 , getSize()*0.8));
     rectangle.setOrigin(getSize() * 0.4 , getSize() * 0.4);
-    rectangle.setFillColor(sf::Color::Green);
+    rectangle.setFillColor(color);
     rectangle.setPosition(position_.first, position_.second);
     
     i_window.draw(rectangleBack);
