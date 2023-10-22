@@ -13,7 +13,7 @@ protected:
     };
     Direction direction_ = Direction::Right;
     const int speed_;
-    size_t lenght_ = 3;
+    size_t lenght_ = 4;
     std::vector<std::pair<int, int>> tailPosition_;
 
 public:

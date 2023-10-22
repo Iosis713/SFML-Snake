@@ -6,9 +6,10 @@ Snake::Snake(int xPos, int yPos, const int size, const int speed)
     , speed_(speed)
 {
     tailPosition_.reserve(20);
-    for(size_t i = 0; i < lenght_; i++)
+    for(size_t i = 0; i < lenght_ - 1; i++)
     {
         tailPosition_.push_back(position_);
+        tailPosition_[i].first -= (int)i * (int)CELL_SIZE;
     }
 };
 
@@ -20,13 +21,22 @@ void Snake::draw(sf::RenderWindow& i_window, sf::Color color)
     rectangleBack.setFillColor(sf::Color::Yellow);
     rectangleBack.setPosition(position_.first, position_.second);
     //Green core
-    sf::RectangleShape rectangle(sf::Vector2f(getSize()*0.8 , getSize()*0.8));
-    rectangle.setOrigin(getSize() * 0.4 , getSize() * 0.4);
-    rectangle.setFillColor(color);
-    rectangle.setPosition(position_.first, position_.second);
+    sf::RectangleShape rectangleHead(sf::Vector2f(getSize()*0.8 , getSize()*0.8));
+    rectangleHead.setOrigin(getSize() * 0.4 , getSize() * 0.4);
+    rectangleHead.setFillColor(color);
+    rectangleHead.setPosition(position_.first, position_.second);
     
     i_window.draw(rectangleBack);
-    i_window.draw(rectangle);
+    i_window.draw(rectangleHead);
+
+    for(auto element : tailPosition_)
+    {
+        sf::RectangleShape rectangleTail(sf::Vector2f(getSize()*0.8 , getSize()*0.8));
+        rectangleTail.setOrigin(getSize() * 0.4 , getSize() * 0.4);
+        rectangleTail.setFillColor(sf::Color::Green);
+        rectangleTail.setPosition(element.first, element.second);
+        i_window.draw(rectangleTail);
+    }
 }
 
 void Snake::update()
@@ -50,6 +60,12 @@ void Snake::update()
 
 void Snake::move()
 {
+    
+    std::vector<std::pair<int, int>> temporary;
+    temporary.reserve(tailPosition_.capacity());
+    temporary = tailPosition_;
+    tailPosition_[0] = position_;
+    
     switch(direction_)
     {
         case Direction::Up:
@@ -68,7 +84,22 @@ void Snake::move()
             position_.first += speed_ * CELL_SIZE;
             break;
     }
+   
+    for(size_t i = 1; i < lenght_; i++)
+    {
+        tailPosition_[i] = temporary[i-1];
+    }
+    
+    size_t counter = 0;
+    for(auto el : tailPosition_)
+    {
+        std::cout << "Tail"<<counter<<": (" << el.first << ", " << el.second << ")\n";
+        counter++;
+    }
+    std::cout << "Snake lenght: " << lenght_ << '\n'; 
+    std::cout << "Size of tailPosition_: " << tailPosition_.size() << '\n';
     checkIfInsideTheMap();
+
 }
 
 void Snake::checkIfInsideTheMap()
@@ -104,6 +135,18 @@ bool Snake::isFoodAte(Food& food)
     if(getPosition() == food.getPosition())
     {
         lenght_++;
+        std::vector<std::pair<int, int>> temporary;
+        temporary.reserve(tailPosition_.capacity() + 1);
+        temporary = tailPosition_;
+        tailPosition_.push_back(*temporary.end());
+
+        /*temporary[0] = position_;
+        for(auto el : tailPosition_)
+        {
+            temporary.push_back(el);
+        }
+        tailPosition_ = temporary;
+        */
         food.kill();    
         return true;
     }
