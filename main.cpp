@@ -41,7 +41,7 @@ int main(){
         snake.isFoodAte(food);
         food.draw(window);        
         snake.move();
-        snake.draw(window, sf::Color::Red);
+        snake.draw(window, sf::Color::Blue);
        
         window.display();
     }

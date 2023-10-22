@@ -89,17 +89,8 @@ void Snake::move()
     {
         tailPosition_[i] = temporary[i-1];
     }
-    
-    size_t counter = 0;
-    for(auto el : tailPosition_)
-    {
-        std::cout << "Tail"<<counter<<": (" << el.first << ", " << el.second << ")\n";
-        counter++;
-    }
-    std::cout << "Snake lenght: " << lenght_ << '\n'; 
-    std::cout << "Size of tailPosition_: " << tailPosition_.size() << '\n';
-    checkIfInsideTheMap();
 
+    checkIfInsideTheMap();
 }
 
 void Snake::checkIfInsideTheMap()
@@ -139,14 +130,6 @@ bool Snake::isFoodAte(Food& food)
         temporary.reserve(tailPosition_.capacity() + 1);
         temporary = tailPosition_;
         tailPosition_.push_back(*temporary.end());
-
-        /*temporary[0] = position_;
-        for(auto el : tailPosition_)
-        {
-            temporary.push_back(el);
-        }
-        tailPosition_ = temporary;
-        */
         food.kill();    
         return true;
     }
