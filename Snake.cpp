@@ -13,6 +13,18 @@ Snake::Snake(int xPos, int yPos, const int size, const int speed)
     }
 };
 
+bool Snake::checkFoodAndSnakeCollision(Food& food)
+{
+    for(auto tailElement : tailPosition_)
+    {
+        if(food.getPosition() == tailElement or food.getPosition() == position_)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Snake::draw(sf::RenderWindow& i_window, sf::Color color)
 {   
     //Yellow circuit
@@ -42,28 +54,24 @@ void Snake::draw(sf::RenderWindow& i_window, sf::Color color)
 void Snake::update()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)
-//                                  && direction_ != Direction::Down
                                   && previousDirection_ != Direction::Down)
     {
         direction_ = Direction::Up;
     }
 
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
-//                                        && direction_ != Direction::Up
                                         && previousDirection_ != Direction::Up)
     {
         direction_ = Direction::Down;
     }
 
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
-//                                        && direction_ != Direction::Right
                                         && previousDirection_ != Direction::Right)
     {
         direction_ = Direction::Left;
     }
 
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
-//                                        && direction_ != Direction::Left
                                         && previousDirection_ != Direction::Left)
     {
         direction_ = Direction::Right;
@@ -147,7 +155,12 @@ bool Snake::isFoodAte(Food& food)
         temporary.reserve(tailPosition_.capacity() + 1);
         temporary = tailPosition_;
         tailPosition_.push_back(*temporary.end());
-        food.kill();    
+        food.kill();
+        
+        while(checkFoodAndSnakeCollision(food))
+        {
+            food.kill();
+        }
         return true;
     }
     else{return false;}

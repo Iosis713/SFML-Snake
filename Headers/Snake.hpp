@@ -18,6 +18,7 @@ protected:
     std::vector<std::pair<int, int>> tailPosition_;
 
 public:
+    bool checkFoodAndSnakeCollision(Food& food);
     void draw(sf::RenderWindow& i_window, sf::Color);
     Snake(int xPos, int yPos, const int size, const int speed);
     void move();
