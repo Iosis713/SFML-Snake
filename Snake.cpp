@@ -25,6 +25,18 @@ bool Snake::checkFoodAndSnakeCollision(Food& food)
     return false;
 }
 
+bool Snake::isTailAte()
+{
+    for(auto tailElement : tailPosition_)
+    {
+        if(tailElement == position_)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Snake::draw(sf::RenderWindow& i_window, sf::Color color)
 {   
     //Yellow circuit

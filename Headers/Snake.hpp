@@ -26,6 +26,7 @@ public:
     void update();
     void checkIfInsideTheMap();
     bool isFoodAte(Food& food);
+    bool isTailAte();
     void updatePreviousDirection();
 
 };

@@ -42,8 +42,13 @@ int main(){
         food.draw(window);        
         snake.move();
         snake.draw(window, sf::Color::Blue);
-       
         window.display();
+        if(snake.isTailAte())
+        {   
+            using namespace std::chrono_literals;
+            std::this_thread::sleep_for(5s);
+            return 0;
+        }
     }
     return 0;
 }
