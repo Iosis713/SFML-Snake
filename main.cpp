@@ -31,7 +31,7 @@ int main(){
         window.clear();
         previousTime = std::chrono::steady_clock::now(); 
 
-
+        snake.updatePreviousDirection();
         do
         {
             snake.update();

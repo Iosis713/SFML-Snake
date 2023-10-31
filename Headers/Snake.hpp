@@ -12,6 +12,7 @@ protected:
         Right
     };
     Direction direction_ = Direction::Right;
+    Direction previousDirection_ = Direction::Right;
     const int speed_;
     size_t lenght_ = 4;
     std::vector<std::pair<int, int>> tailPosition_;
@@ -24,6 +25,7 @@ public:
     void update();
     void checkIfInsideTheMap();
     bool isFoodAte(Food& food);
+    void updatePreviousDirection();
 
 };
 

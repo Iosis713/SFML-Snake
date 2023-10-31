@@ -41,21 +41,38 @@ void Snake::draw(sf::RenderWindow& i_window, sf::Color color)
 
 void Snake::update()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && direction_ != Direction::Down){
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)
+//                                  && direction_ != Direction::Down
+                                  && previousDirection_ != Direction::Down)
+    {
         direction_ = Direction::Up;
     }
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && direction_ != Direction::Up){
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
+//                                        && direction_ != Direction::Up
+                                        && previousDirection_ != Direction::Up)
+    {
         direction_ = Direction::Down;
     }
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && direction_ != Direction::Right){
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+//                                        && direction_ != Direction::Right
+                                        && previousDirection_ != Direction::Right)
+    {
         direction_ = Direction::Left;
     }
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && direction_ != Direction::Left){
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+//                                        && direction_ != Direction::Left
+                                        && previousDirection_ != Direction::Left)
+    {
         direction_ = Direction::Right;
     }
+}
+
+void Snake::updatePreviousDirection()
+{
+    previousDirection_ = direction_;
 }
 
 void Snake::move()
