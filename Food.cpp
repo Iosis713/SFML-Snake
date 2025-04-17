@@ -7,12 +7,6 @@ Food::Food(int xPos, int yPos, const int size)
     , size_(size)
 {}
 
-void Food::setIsAlive(bool life)
-{
-    isAlive_ = life;
-}
-
-bool Food::getIsAlive() {return isAlive_;}
 float Food::getSize() {return size_;}
 void Food::setPosition(const int& xPos, const int& yPos)
 {
@@ -32,10 +26,8 @@ void Food::draw(sf::RenderWindow& i_window)
 
 void Food::kill()
 {   
-    setIsAlive(false);
     setPosition(getRandom(WIDTH/CELL_SIZE - 1) * CELL_SIZE + CELL_SIZE/2,
                 getRandom(HEIGHT/CELL_SIZE - 1) * CELL_SIZE + CELL_SIZE/2);
-    setIsAlive(true);
 }
 
 int Food::getRandom(const int upperLimit)
