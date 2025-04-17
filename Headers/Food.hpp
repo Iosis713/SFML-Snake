@@ -11,15 +11,16 @@ protected:
     const int size_;
 
 public:
+    Food() = delete;
     Food(const int size, int xPos, int yPos);
     ~Food() = default;
 
     void draw(sf::RenderWindow& i_window);
-    void setIsAlive(bool life);    
-    void setPosition(const int& xPos,const int& yPos);
+    virtual void setIsAlive(bool life);    
+    virtual void setPosition(const int& xPos,const int& yPos);
     bool getIsAlive();
     std::pair<int, int> getPosition();
-    int getRandom(const int& upperLimit);
+    virtual int getRandom(const int upperLimit);
     float getSize();    
 
     void kill();

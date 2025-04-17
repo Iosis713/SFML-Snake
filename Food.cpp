@@ -37,7 +37,7 @@ void Food::kill()
     setIsAlive(true);
 }
 
-int Food::getRandom(const int& upperLimit)
+int Food::getRandom(const int upperLimit)
 {
     std::random_device randDev;
     std::mt19937 randGenerator(randDev());
