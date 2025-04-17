@@ -16,6 +16,12 @@ public:
     {};
 };
 
+class FoodFixture : public testing::Test
+{
+public:
+    Food foodFixture{20, 140, CELL_SIZE/2};
+};
+
 class FoodMockFixture : public testing::Test
 {
 public:
@@ -33,8 +39,30 @@ TEST_F(FoodMockFixture, killTest)
     EXPECT_CALL(foodMock, setPosition(testing::_, testing::_))
         .Times(1);
 
+    //WHEN
     foodMock.kill();
+    //THEN
 };
+
+TEST_F(FoodFixture, getRandomTest)
+{
+    //GIVEN
+    const int upLimit = 10;
+    //WHEN
+    const int result = foodFixture.getRandom(upLimit);
+
+    ASSERT_LE(result, upLimit);
+}
+
+TEST_F(FoodFixture, getRandomTestException)
+{
+    //GIVEN
+    //WHEN
+    //THEN
+
+    ASSERT_THROW(foodFixture.getRandom(-1), std::runtime_error);
+}
+
 
 int main(int argc, char** argv)
 {

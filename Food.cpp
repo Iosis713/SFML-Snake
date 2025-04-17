@@ -1,5 +1,6 @@
 #include "Headers/Food.hpp"
 #include "Headers/Global.hpp"
+#include <stdexcept>
 
 Food::Food(int xPos, int yPos, const int size)
     : position_(xPos, yPos)
@@ -39,6 +40,9 @@ void Food::kill()
 
 int Food::getRandom(const int upperLimit)
 {
+    if (upperLimit < 0)
+        throw std::runtime_error("Upper limit has to be higher than 0!\n");
+
     std::random_device randDev;
     std::mt19937 randGenerator(randDev());
     std::uniform_int_distribution<int> dist((int) 0, upperLimit);
