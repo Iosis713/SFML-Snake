@@ -40,13 +40,13 @@ bool Snake::isTailAte()
 void Snake::draw(sf::RenderWindow& i_window, sf::Color color)
 {   
     //Yellow circuit
-    sf::RectangleShape rectangleBack(sf::Vector2f(getSize(), getSize()));
-    rectangleBack.setOrigin(getSize() * 0.5, getSize() * 0.5);
+    sf::RectangleShape rectangleBack(sf::Vector2f(size_, size_));
+    rectangleBack.setOrigin(size_ * 0.5, size_ * 0.5);
     rectangleBack.setFillColor(sf::Color::Yellow);
     rectangleBack.setPosition(position_.first, position_.second);
     //Green core
-    sf::RectangleShape rectangleHead(sf::Vector2f(getSize()*0.8 , getSize()*0.8));
-    rectangleHead.setOrigin(getSize() * 0.4 , getSize() * 0.4);
+    sf::RectangleShape rectangleHead(sf::Vector2f(size_*0.8 , size_*0.8));
+    rectangleHead.setOrigin(size_ * 0.4 , size_ * 0.4);
     rectangleHead.setFillColor(color);
     rectangleHead.setPosition(position_.first, position_.second);
     
@@ -55,8 +55,8 @@ void Snake::draw(sf::RenderWindow& i_window, sf::Color color)
 
     for(auto element : tailPosition_)
     {
-        sf::RectangleShape rectangleTail(sf::Vector2f(getSize()*0.8 , getSize()*0.8));
-        rectangleTail.setOrigin(getSize() * 0.4 , getSize() * 0.4);
+        sf::RectangleShape rectangleTail(sf::Vector2f(size_*0.8 , size_*0.8));
+        rectangleTail.setOrigin(size_ * 0.4 , size_ * 0.4);
         rectangleTail.setFillColor(sf::Color::Green);
         rectangleTail.setPosition(element.first, element.second);
         i_window.draw(rectangleTail);

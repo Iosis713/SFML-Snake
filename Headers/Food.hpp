@@ -7,7 +7,6 @@ class Food
 protected:
     std::pair<int, int> position_;
     const int size_;
-    float getSize() {return this->size_;};
     std::unique_ptr<sf::Shape> shape_ = nullptr;
 
 public:

@@ -42,4 +42,3 @@ int Food::getRandom(const int upperLimit)
     std::uniform_int_distribution<int> dist((int) 0, upperLimit);
     return dist(randGenerator);
 }
-
