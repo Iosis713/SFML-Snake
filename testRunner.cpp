@@ -1,7 +1,9 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include <utility>
 
 #include "Headers/Food.hpp"
+#include "Headers/Snake.hpp"
 #include "Headers/Global.hpp"
 
 class FoodMock : public Food
@@ -9,6 +11,7 @@ class FoodMock : public Food
 public:
     MOCK_METHOD(int, getRandom, (const int upperLimit), (override));
     MOCK_METHOD(void, setPosition, (const int& xPos, const int& yPos), (override));
+    MOCK_METHOD((std::pair<int, int>), getPosition, (), (const, override));
 
     FoodMock(const int size, int xPos, int yPos)
         :Food(size, xPos, yPos)
@@ -24,8 +27,13 @@ public:
 class FoodMockFixture : public testing::Test
 {
 public:
-    
     FoodMock foodMock{20, 140, CELL_SIZE/2};
+};
+
+class SnakeFixture : public testing::Test
+{
+public:
+    Snake snake{60, 180, CELL_SIZE, 1};
 };
 
 TEST_F(FoodMockFixture, killTest)
@@ -56,6 +64,15 @@ TEST_F(FoodFixture, getRandomTestException)
     ASSERT_THROW(foodFixture.getRandom(-1), std::runtime_error);
 }
 
+TEST_F(SnakeFixture, chekcFoodAndSnakeCollisionTest)
+{
+    //GIVEN
+    FoodMock foodMock{20, 140, CELL_SIZE/2};
+    EXPECT_CALL(foodMock, getPosition())
+        .Times(testing::AtLeast(snake.getLenght()));
+    
+    ASSERT_FALSE(snake.checkFoodAndSnakeCollision(foodMock));
+}
 
 int main(int argc, char** argv)
 {

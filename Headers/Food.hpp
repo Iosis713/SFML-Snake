@@ -17,7 +17,7 @@ public:
 
     void draw(sf::RenderWindow& i_window); 
     virtual void setPosition(const int& xPos,const int& yPos);
-    std::pair<int, int> getPosition() {return this->position_;};
+    virtual std::pair<int, int> getPosition() const {return this->position_;};
     virtual int getRandom(const int upperLimit);
     void kill();
 };
