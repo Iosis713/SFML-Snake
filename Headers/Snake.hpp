@@ -22,12 +22,10 @@ public:
     void draw(sf::RenderWindow& i_window, sf::Color);
     Snake(int xPos, int yPos, const int size, const int speed);
     void move();
-    size_t getLenght();
+    size_t getLenght() const { return lenght_; };
     void update();
     void checkIfInsideTheMap();
     bool isFoodAte(Food& food);
     bool isTailAte();
     void updatePreviousDirection();
-
 };
-

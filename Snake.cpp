@@ -175,8 +175,6 @@ bool Snake::isFoodAte(Food& food)
         }
         return true;
     }
-    else{return false;}
+    else
+        return false;
 }
-
-size_t Snake::getLenght(){ return lenght_; }
-

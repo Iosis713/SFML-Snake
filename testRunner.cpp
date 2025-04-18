@@ -64,7 +64,7 @@ TEST_F(FoodFixture, getRandomTestException)
     ASSERT_THROW(foodFixture.getRandom(-1), std::runtime_error);
 }
 
-TEST_F(SnakeFixture, chekcFoodAndSnakeCollisionTest)
+TEST_F(SnakeFixture, checkFoodAndSnakeCollisionTest)
 {
     //GIVEN
     FoodMock foodMock{20, 140, CELL_SIZE/2};
