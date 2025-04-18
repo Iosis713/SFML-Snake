@@ -48,6 +48,7 @@ TEST_F(FoodFixture, getRandomTest)
     const int result = foodFixture.getRandom(upLimit);
 
     ASSERT_LE(result, upLimit);
+    ASSERT_NO_THROW();
 }
 
 TEST_F(FoodFixture, getRandomTestException)

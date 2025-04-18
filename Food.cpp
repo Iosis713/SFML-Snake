@@ -1,27 +1,29 @@
 #include "Headers/Food.hpp"
 #include "Headers/Global.hpp"
 #include <stdexcept>
+#include <random>
+
 
 Food::Food(int xPos, int yPos, const int size)
     : position_(xPos, yPos)
     , size_(size)
-{}
+{
+    shape_ = std::make_unique<sf::CircleShape>(size_);
+    shape_->setOrigin(size_, size_);
+    shape_->setFillColor(sf::Color::Red);
+}
 
-float Food::getSize() {return size_;}
 void Food::setPosition(const int& xPos, const int& yPos)
 {
     position_.first = xPos;
     position_.second = yPos;
 }
-std::pair<int, int> Food::getPosition() {return this->position_;}
 
 void Food::draw(sf::RenderWindow& i_window)
 {
-    sf::CircleShape circle(getSize());
-    circle.setOrigin(getSize(), getSize());
-    circle.setFillColor(sf::Color::Red);
-    circle.setPosition(position_.first, position_.second);
-    i_window.draw(circle);
+    shape_->setPosition(position_.first, position_.second);
+    if (shape_)
+        i_window.draw(*shape_);
 }
 
 void Food::kill()
