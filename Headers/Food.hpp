@@ -12,7 +12,7 @@ protected:
 public:
     Food() = delete;
     Food(const Food& food) = delete;
-    Food(const int size, int xPos, int yPos);
+    Food(int xPos, int yPos, const int size);
     ~Food() = default;
 
     void draw(sf::RenderWindow& i_window); 

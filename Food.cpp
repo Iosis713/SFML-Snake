@@ -5,7 +5,7 @@
 
 
 Food::Food(int xPos, int yPos, const int size)
-    : position_(xPos, yPos)
+    : position_({xPos, yPos})
     , size_(size)
 {
     shape_ = std::make_unique<sf::CircleShape>(size_);

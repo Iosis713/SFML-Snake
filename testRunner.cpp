@@ -74,6 +74,15 @@ TEST_F(SnakeFixture, checkFoodAndSnakeCollisionTest)
     ASSERT_FALSE(snake.checkFoodAndSnakeCollision(foodMock));
 }
 
+TEST_F(SnakeFixture, isFoodAteTest)
+{
+    //GIVEN
+    Food food{snake.getPosition().first, snake.getPosition().second, CELL_SIZE/2};
+    //WHEN
+    //THEN
+    ASSERT_TRUE(snake.isFoodAte(food));
+}
+
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
