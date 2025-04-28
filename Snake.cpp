@@ -1,57 +1,54 @@
 #include "Headers/Global.hpp"
 #include "Headers/Snake.hpp"
+#include <algorithm>
+#include <ranges>
 
 Snake::Snake(int xPos, int yPos, const int size, const int speed)
     : Food(xPos, yPos, size)
     , speed_(speed)
+    , head_(sf::Vector2f(size_ * 0.8, size_ * 0.8))
 {
     tailPosition_.reserve(20);
     for(size_t i = 0; i < lenght_ - 1; i++)
     {
         tailPosition_.push_back(position_);
-        tailPosition_[i].first -= (int)i * (int)CELL_SIZE;
+        tailPosition_[i].first -= static_cast<int>(i) * static_cast<int>(CELL_SIZE);
     }
+    head_.setOrigin(size_ * 0.4 , size_ * 0.4);
+    head_.setFillColor(sf::Color::Blue);
+    head_.setOutlineThickness(size_ * 0.2);
+    head_.setOutlineColor(sf::Color::Yellow);
 };
 
 bool Snake::checkFoodAndSnakeCollision(Food& food)
 {
-    for(auto tailElement : tailPosition_)
+    if (std::ranges::any_of(tailPosition_, [&](const auto& tailElement)
+            {
+                return (food.getPosition() == tailElement or food.getPosition() == position_);
+            }))
     {
-        if(food.getPosition() == tailElement or food.getPosition() == position_)
-        {
-            return true;
-        }
+        return true;
     }
     return false;
 }
 
 bool Snake::isTailAte()
-{
-    for(auto tailElement : tailPosition_)
+{   
+    if (std::ranges::any_of(tailPosition_, [&](const auto& tailElement)
+            {
+                return tailElement == position_;
+            }))
     {
-        if(tailElement == position_)
-        {
-            return true;
-        }
+        return true;
     }
     return false;
 }
 
-void Snake::draw(sf::RenderWindow& i_window, sf::Color color)
-{   
-    //Yellow circuit
-    sf::RectangleShape rectangleBack(sf::Vector2f(size_, size_));
-    rectangleBack.setOrigin(size_ * 0.5, size_ * 0.5);
-    rectangleBack.setFillColor(sf::Color::Yellow);
-    rectangleBack.setPosition(position_.first, position_.second);
-    //Green core
-    sf::RectangleShape rectangleHead(sf::Vector2f(size_*0.8 , size_*0.8));
-    rectangleHead.setOrigin(size_ * 0.4 , size_ * 0.4);
-    rectangleHead.setFillColor(color);
-    rectangleHead.setPosition(position_.first, position_.second);
+void Snake::draw(sf::RenderWindow& i_window)
+{
+    head_.setPosition(position_.first, position_.second);
     
-    i_window.draw(rectangleBack);
-    i_window.draw(rectangleHead);
+    i_window.draw(head_);
 
     for(auto element : tailPosition_)
     {
@@ -97,7 +94,6 @@ void Snake::updatePreviousDirection()
 
 void Snake::move()
 {
-    
     std::vector<std::pair<int, int>> temporary;
     temporary.reserve(tailPosition_.capacity());
     temporary = tailPosition_;
