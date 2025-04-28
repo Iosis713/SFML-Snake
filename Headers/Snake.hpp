@@ -2,15 +2,16 @@
 
 #include "Food.hpp"
 
+enum class Direction {
+    Up,
+    Down,
+    Left,
+    Right
+};
+
 class Snake : public Food
 {
 protected:
-    enum class Direction {
-        Up,
-        Down,
-        Left,
-        Right
-    };
     Direction direction_ = Direction::Right;
     Direction previousDirection_ = Direction::Right;
     const int speed_;
@@ -20,11 +21,13 @@ protected:
 
 public:
     bool checkFoodAndSnakeCollision(Food& food);
+    virtual Direction control();
     void draw(sf::RenderWindow& i_window);
     Snake(int xPos, int yPos, const int size, const int speed);
     void move();
     size_t getLenght() const { return lenght_; };
-    void update();
+    Direction getDirection() const { return this->direction_; };
+    void update(const Direction newDirection);
     void checkIfInsideTheMap();
     bool isFoodAte(Food& food);
     bool isTailAte();

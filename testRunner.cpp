@@ -83,6 +83,26 @@ TEST_F(SnakeFixture, isFoodAteTest)
     ASSERT_TRUE(snake.isFoodAte(food));
 }
 
+TEST_F(SnakeFixture, directionChanged)
+{
+    //GIVEN
+    Direction newDirection = Direction::Up;
+    //WHEN
+    snake.update(newDirection);
+    //THEN
+    ASSERT_EQ(snake.getDirection(), newDirection);
+}
+
+TEST_F(SnakeFixture, directionNotChanged)
+{
+    //GIVEN
+    Direction newDirection = Direction::Left;
+    //WHEN
+    snake.update(newDirection);
+    //THEN
+    ASSERT_NE(snake.getDirection(), newDirection);
+}
+
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);

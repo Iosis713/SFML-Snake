@@ -20,6 +20,21 @@ Snake::Snake(int xPos, int yPos, const int size, const int speed)
     head_.setOutlineColor(sf::Color::Yellow);
 };
 
+Direction Snake::control()
+{
+    using enum Direction;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        return Up;
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        return Down;
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        return Left;
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        return Right;
+    else
+        return direction_;
+}
+
 bool Snake::checkFoodAndSnakeCollision(Food& food)
 {
     if (std::ranges::any_of(tailPosition_, [&](const auto& tailElement)
@@ -60,31 +75,22 @@ void Snake::draw(sf::RenderWindow& i_window)
     }
 }
 
-void Snake::update()
+void Snake::update(const Direction newDirection)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)
-                                  && previousDirection_ != Direction::Down)
-    {
-        direction_ = Direction::Up;
-    }
+    using enum Direction;
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
-                                        && previousDirection_ != Direction::Up)
+    const auto isDirectionUpdated = [&]()
     {
-        direction_ = Direction::Down;
-    }
+        bool result = false;
+        result |= newDirection == Up && previousDirection_ != Down;
+        result |= newDirection == Down && previousDirection_ != Up;
+        result |= newDirection == Left && previousDirection_ != Right;
+        result |= newDirection == Right && previousDirection_ != Left;
+        return result;
+    };
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
-                                        && previousDirection_ != Direction::Right)
-    {
-        direction_ = Direction::Left;
-    }
-
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
-                                        && previousDirection_ != Direction::Left)
-    {
-        direction_ = Direction::Right;
-    }
+    if (isDirectionUpdated())
+        direction_ = newDirection;
 }
 
 void Snake::updatePreviousDirection()
@@ -99,21 +105,19 @@ void Snake::move()
     temporary = tailPosition_;
     tailPosition_[0] = position_;
     
+    using enum Direction;
     switch(direction_)
     {
-        case Direction::Up:
+        case Up:
             position_.second -= speed_ * CELL_SIZE;
             break;
-
-        case Direction::Down:
+        case Down:
             position_.second += speed_ * CELL_SIZE;
             break;
-
-        case Direction::Left:
+        case Left:
             position_.first -= speed_ * CELL_SIZE;
             break;
-
-        case Direction::Right:
+        case Right:
             position_.first += speed_ * CELL_SIZE;
             break;
     }

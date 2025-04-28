@@ -34,7 +34,7 @@ int main(){
         snake.updatePreviousDirection();
         do
         {
-            snake.update();
+            snake.update(snake.control());
             deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - previousTime).count();   
         }while (FRAME_DURATION > deltaTime);
 
