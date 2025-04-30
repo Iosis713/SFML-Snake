@@ -1,13 +1,7 @@
 #pragma once
 
 #include "Food.hpp"
-
-enum class Direction {
-    Up,
-    Down,
-    Left,
-    Right
-};
+#include "Config.hpp"
 
 class Snake : public Food
 {

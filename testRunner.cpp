@@ -4,7 +4,7 @@
 
 #include "Headers/Food.hpp"
 #include "Headers/Snake.hpp"
-#include "Headers/Global.hpp"
+#include "Headers/Config.hpp"
 
 class FoodMock : public Food
 {

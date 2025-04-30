@@ -1,4 +1,3 @@
-#include "Headers/Global.hpp"
 #include "Headers/Snake.hpp"
 #include <algorithm>
 #include <ranges>

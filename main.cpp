@@ -1,5 +1,5 @@
 #include "Headers/Food.hpp"
-#include "Headers/Global.hpp"
+#include "Headers/Config.hpp"
 #include "Headers/Snake.hpp"
 
 #include <chrono>
