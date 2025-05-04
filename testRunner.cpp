@@ -2,7 +2,7 @@
 #include <gmock/gmock.h>
 #include <utility>
 
-#include "Headers/Config.hpp"
+#include "Modules/Config.hpp"
 import Food;
 import Snake;
 import Controller;

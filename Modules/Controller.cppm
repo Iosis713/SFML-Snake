@@ -1,7 +1,6 @@
 module;
 
 #include "Config.hpp"
-//#include "Snake.hpp"
 import Snake;
 #include "SFML/Graphics.hpp"
 #include <memory>

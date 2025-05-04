@@ -1,5 +1,5 @@
 module;
-#include "../Headers/Config.hpp"
+#include "../Modules/Config.hpp"
 #include "SFML/Graphics.hpp"
 module Controller; 
 

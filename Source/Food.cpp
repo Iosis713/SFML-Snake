@@ -1,6 +1,6 @@
 module;
 
-#include "../Headers/Config.hpp"
+#include "../Modules/Config.hpp"
 #include <stdexcept>
 #include <random>
 

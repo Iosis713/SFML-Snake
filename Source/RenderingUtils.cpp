@@ -2,7 +2,7 @@ module;
 
 import Food;
 import Snake;
-#include "../Headers/Config.hpp"
+#include "../Modules/Config.hpp"
 #include <SFML/Graphics.hpp>
 #include <memory>
 

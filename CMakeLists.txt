@@ -1,22 +1,19 @@
 cmake_minimum_required(VERSION 3.26)
 project(Snake)
 
-#set(CMAKE_CXX_STANDARD 20)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 set(CMAKE_CXX_COMPILER clang++-18)
 set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_CXX_SCAN_FOR_MODULES ON) #required for ninja building
+set(CMAKE_CXX_SCAN_FOR_MODULES ON)
 set(CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS "/usr/bin/cland-scan-deps-18")
 set(FLAGS -Wall -Wextra -Wpedantic -Werror)
 set(SFML_LIB    sfml-graphics
                 sfml-window
                 sfml-system)
 
-set(SRC_MOD     Headers/Food.cppm
-                Headers/Snake.cppm
-                Headers/Controller.cppm
-                Headers/RenderingUtils.cppm)
+set(SRC_MOD     Modules/Food.cppm
+                Modules/Snake.cppm
+                Modules/Controller.cppm
+                Modules/RenderingUtils.cppm)
 
 set(SRC Source/Food.cpp
         Source/Snake.cpp

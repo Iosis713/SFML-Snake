@@ -1,5 +1,5 @@
 module;
-#include "../Headers/Config.hpp"
+#include "../Modules/Config.hpp"
 #include <algorithm>
 #include <ranges>
 #include <vector>
