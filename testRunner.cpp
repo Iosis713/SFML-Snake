@@ -69,7 +69,7 @@ TEST_F(SnakeFixture, checkFoodAndSnakeCollisionTest)
     //GIVEN
     FoodMock foodMock{20, 140, CELL_SIZE/2};
     EXPECT_CALL(foodMock, getPosition())
-        .Times(testing::AtLeast(snake.getLenght()));
+        .Times(testing::AtLeast(snake.getLength()));
     
     ASSERT_FALSE(snake.checkFoodAndSnakeCollision(foodMock));
 }

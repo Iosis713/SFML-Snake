@@ -11,7 +11,6 @@ protected:
     const int speed_;
     size_t lenght_ = 4;
     sf::RectangleShape head_;
-    std::vector<sf::RectangleShape> tail_;
     std::vector<std::pair<int, int>> tailPosition_;
 
 public:
@@ -22,8 +21,9 @@ public:
     virtual Direction control();
     void draw(sf::RenderWindow& i_window);
     void move();
-    size_t getLenght() const { return lenght_; };
+    size_t getLength() const { return lenght_; };
     Direction getDirection() const { return this->direction_; };
+    const std::vector<std::pair<int, int>>& getTailPosition() const {return this->tailPosition_;};
     void update(const Direction newDirection);
     void checkIfInsideTheMap();
     bool isFoodAte(Food& food);
