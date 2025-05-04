@@ -2,10 +2,12 @@
 #include <gmock/gmock.h>
 #include <utility>
 
-#include "Headers/Food.hpp"
-#include "Headers/Snake.hpp"
 #include "Headers/Config.hpp"
-#include "Headers/RenderingUtils.hpp"
+import Food;
+import Snake;
+import Controller;
+import RenderingUtils;
+#include <SFML/Graphics.hpp>
 
 class FoodMock : public Food
 {

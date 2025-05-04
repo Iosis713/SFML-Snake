@@ -1,12 +1,16 @@
-#pragma once
+module;
 
 #include "Config.hpp"
-#include "Food.hpp"
-#include "Snake.hpp"
+//#include "Food.hpp"
+//#include "Snake.hpp"
+import Food;
+import Snake;
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-class Renderable
+export module RenderingUtils;
+
+export class Renderable
 {
 public:
     virtual ~Renderable() = default;
@@ -15,7 +19,7 @@ public:
     virtual void draw(sf::RenderWindow& window) const = 0;
 };
 
-template<typename Entity>
+export template<typename Entity>
 class Renderer : public Renderable
 {
 protected:
@@ -46,7 +50,7 @@ public:
     }
 };
 
-class SnakeRenderer : public Renderer<Snake>
+export class SnakeRenderer : public Renderer<Snake>
 {
 protected:
     std::vector<sf::RectangleShape> tail_;
@@ -80,7 +84,7 @@ public:
     void updatePosition() override; 
 };
 
-class RenderEngine
+export class RenderEngine
 {
 private:
     sf::RenderWindow window_;

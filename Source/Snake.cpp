@@ -1,6 +1,12 @@
-#include "../Headers/Snake.hpp"
+module;
+#include "../Headers/Config.hpp"
+
+//#include "../Headers/Snake.hpp"
 #include <algorithm>
 #include <ranges>
+#include <vector>
+
+module Snake;
 
 Snake::Snake(int xPos, int yPos, const int size)
     : Food(xPos, yPos, size)

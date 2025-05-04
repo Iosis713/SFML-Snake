@@ -1,13 +1,16 @@
-#pragma once
+module;
 
 #include "Config.hpp"
-#include "Snake.hpp"
+//#include "Snake.hpp"
+import Snake;
 #include "SFML/Graphics.hpp"
 #include <memory>
 
-using SnakePtr = std::shared_ptr<Snake>;
+export module Controller;
 
-class Controller
+export using SnakePtr = std::shared_ptr<Snake>;
+
+export class Controller
 {
 private:
     SnakePtr target_ = nullptr;

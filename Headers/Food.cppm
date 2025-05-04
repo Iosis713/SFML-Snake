@@ -1,7 +1,9 @@
-#pragma once
+module;
 #include <memory>
 
-class Food
+export module Food;
+
+export class Food
 {
 protected:
     std::pair<int, int> position_;

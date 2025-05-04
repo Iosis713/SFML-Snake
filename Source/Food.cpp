@@ -1,8 +1,10 @@
-#include "../Headers/Food.hpp"
+module;
+//#include "../Headers/Food.hpp"
 #include "../Headers/Config.hpp"
 #include <stdexcept>
 #include <random>
 
+module Food;
 
 Food::Food(int xPos, int yPos, const int size)
     : position_({xPos, yPos})

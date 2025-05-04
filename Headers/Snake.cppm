@@ -1,10 +1,14 @@
-#pragma once
+module;
 
-#include "Food.hpp"
+//#include "Food.hpp"
+import Food;
 #include "Config.hpp"
 #include <vector>
+#include <memory>
 
-class Snake : public Food
+export module Snake;
+
+export class Snake : public Food
 {
 protected:
     Direction direction_ = Direction::Right;

@@ -1,4 +1,8 @@
-#include "../Headers/Controller.hpp"
+module;
+//#include "../Headers/Controller.hpp"
+#include "../Headers/Config.hpp"
+#include "SFML/Graphics.hpp"
+module Controller; 
 
 Controller::Controller(const SnakePtr selectedTarget)
     : target_(selectedTarget)
