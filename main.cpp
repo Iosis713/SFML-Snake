@@ -3,14 +3,9 @@ import Food;
 import Snake;
 import Controller;
 import RenderingUtils;
+
 #include <SFML/Graphics.hpp>
 
-/*
-#include "Headers/Food.hpp"
-#include "Headers/Snake.hpp"
-#include "Headers/Controller.hpp"
-#include "Headers/RenderingUtils.hpp"
-*/
 #include <chrono>
 #include <iostream>
 #include <thread>

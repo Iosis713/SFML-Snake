@@ -2,7 +2,6 @@ module;
 
 import Food;
 import Snake;
-//#include "../Headers/RenderingUtils.hpp"
 #include "../Headers/Config.hpp"
 #include <SFML/Graphics.hpp>
 #include <memory>

@@ -1,7 +1,5 @@
 module;
 #include "../Headers/Config.hpp"
-
-//#include "../Headers/Snake.hpp"
 #include <algorithm>
 #include <ranges>
 #include <vector>

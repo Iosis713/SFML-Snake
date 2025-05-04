@@ -1,8 +1,6 @@
 module;
 
 #include "Config.hpp"
-//#include "Food.hpp"
-//#include "Snake.hpp"
 import Food;
 import Snake;
 #include <SFML/Graphics.hpp>
