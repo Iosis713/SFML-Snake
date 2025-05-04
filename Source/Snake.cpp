@@ -1,4 +1,4 @@
-#include "Headers/Snake.hpp"
+#include "../Headers/Snake.hpp"
 #include <algorithm>
 #include <ranges>
 

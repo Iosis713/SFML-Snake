@@ -16,7 +16,7 @@ public:
     ~Food() = default;
 
     void draw(sf::RenderWindow& i_window); 
-    virtual void setPosition(const int& xPos,const int& yPos);
+    virtual void setPosition(const int xPos, const int yPos);
     virtual std::pair<int, int> getPosition() const {return this->position_;};
     virtual int getRandom(const int upperLimit);
     void kill();

@@ -1,5 +1,5 @@
-#include "Headers/Food.hpp"
-#include "Headers/Config.hpp"
+#include "../Headers/Food.hpp"
+#include "../Headers/Config.hpp"
 #include <stdexcept>
 #include <random>
 
@@ -13,7 +13,7 @@ Food::Food(int xPos, int yPos, const int size)
     shape_->setFillColor(sf::Color::Red);
 }
 
-void Food::setPosition(const int& xPos, const int& yPos)
+void Food::setPosition(const int xPos, const int yPos)
 {
     position_.first = xPos;
     position_.second = yPos;

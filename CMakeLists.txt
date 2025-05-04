@@ -8,8 +8,10 @@ set(SFML_LIB    sfml-graphics
                 sfml-window
                 sfml-system)
 
-set(SRC Food.cpp
-        Snake.cpp)
+set(SRC Source/Food.cpp
+        Source/Snake.cpp
+        Source/Controller.cpp
+        Source/RenderingUtils.cpp)
 
 set(GMOCK_LIBRARIES     /usr/lib/libgmock.a     /usr/lib/libgmock_main.a)
 find_package(GTest      REQUIRED)

@@ -10,7 +10,7 @@ class FoodMock : public Food
 {
 public:
     MOCK_METHOD(int, getRandom, (const int upperLimit), ());
-    MOCK_METHOD(void, setPosition, (const int& xPos, const int& yPos), (override));
+    MOCK_METHOD(void, setPosition, (const int xPos, const int yPos), (override));
     MOCK_METHOD((std::pair<int, int>), getPosition, (), (const, override));
 
     FoodMock(const int size, int xPos, int yPos)

@@ -11,13 +11,16 @@ protected:
     const int speed_;
     size_t lenght_ = 4;
     sf::RectangleShape head_;
+    std::vector<sf::RectangleShape> tail_;
     std::vector<std::pair<int, int>> tailPosition_;
 
 public:
+    Snake() = delete;
+    Snake(int xPos, int yPos, const int size, const int speed);
+    virtual ~Snake() = default;
     bool checkFoodAndSnakeCollision(Food& food);
     virtual Direction control();
     void draw(sf::RenderWindow& i_window);
-    Snake(int xPos, int yPos, const int size, const int speed);
     void move();
     size_t getLenght() const { return lenght_; };
     Direction getDirection() const { return this->direction_; };

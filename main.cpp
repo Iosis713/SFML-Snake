@@ -1,6 +1,7 @@
 #include "Headers/Food.hpp"
 #include "Headers/Config.hpp"
 #include "Headers/Snake.hpp"
+#include "Headers/Controller.hpp"
 
 #include <chrono>
 #include <iostream>
@@ -11,11 +12,10 @@ int main(){
 
     std::string status;
     Food food(20, 140, CELL_SIZE/2);
-    Snake snake(60, 180, CELL_SIZE, 1);
+    auto snake = std::make_shared<Snake>(60, 180, CELL_SIZE, 1);
+    Controller controller(snake);
     
-    //variable for screen refreshing
-    std::chrono::time_point<std::chrono::steady_clock> previousTime;
-    previousTime = std::chrono::steady_clock::now();
+    std::chrono::time_point<std::chrono::steady_clock> lastScreenRefresh = std::chrono::steady_clock::now();
     unsigned deltaTime;
     
     while (window.isOpen())
@@ -29,21 +29,21 @@ int main(){
             }
 
         window.clear();
-        previousTime = std::chrono::steady_clock::now(); 
+        lastScreenRefresh = std::chrono::steady_clock::now(); 
 
-        snake.updatePreviousDirection();
+        snake->updatePreviousDirection();
         do
         {
-            snake.update(snake.control());
-            deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - previousTime).count();   
+            snake->update(controller.control());
+            deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - lastScreenRefresh).count();   
         }while (FRAME_DURATION > deltaTime);
 
-        snake.isFoodAte(food);
+        snake->isFoodAte(food);
         food.draw(window);        
-        snake.move();
-        snake.draw(window);
+        snake->move();
+        snake->draw(window);
         window.display();
-        if(snake.isTailAte())
+        if(snake->isTailAte())
         {   
             using namespace std::chrono_literals;
             std::this_thread::sleep_for(5s);
