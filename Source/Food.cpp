@@ -7,23 +7,12 @@
 Food::Food(int xPos, int yPos, const int size)
     : position_({xPos, yPos})
     , size_(size)
-{
-    shape_ = std::make_unique<sf::CircleShape>(size_);
-    shape_->setOrigin(size_, size_);
-    shape_->setFillColor(sf::Color::Red);
-}
+{}
 
 void Food::setPosition(const int xPos, const int yPos)
 {
     position_.first = xPos;
     position_.second = yPos;
-}
-
-void Food::draw(sf::RenderWindow& i_window)
-{
-    shape_->setPosition(position_.first, position_.second);
-    if (shape_)
-        i_window.draw(*shape_);
 }
 
 void Food::kill()

@@ -33,7 +33,7 @@ public:
 class SnakeFixture : public testing::Test
 {
 public:
-    Snake snake{60, 180, CELL_SIZE, 1};
+    Snake snake{60, 180, CELL_SIZE};
 };
 
 TEST_F(FoodMockFixture, killTest)

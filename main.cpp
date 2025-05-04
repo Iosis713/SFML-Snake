@@ -8,12 +8,12 @@
 #include <iostream>
 #include <thread>
 
-int main(){  
-    //sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SNAKE");
+int main()
+{  
     RenderEngine renderEngine{};
 
     auto food = std::make_shared<Food>(20, 140, CELL_SIZE/2);
-    auto snake = std::make_shared<Snake>(60, 180, CELL_SIZE, 1);
+    auto snake = std::make_shared<Snake>(60, 180, CELL_SIZE);
     Controller controller(snake);
     auto foodRenderer = std::make_shared<Renderer<Food>>(food);
     auto snakeRenderer = std::make_shared<SnakeRenderer>(snake);
@@ -49,12 +49,6 @@ int main(){
         snake->move();
 
         renderEngine.render();
-
-        /*
-        food->draw(window);        
-        snake->draw(window);
-        window.display();
-        */
 
         if(snake->isTailAte())
         {   

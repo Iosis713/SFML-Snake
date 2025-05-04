@@ -2,10 +2,8 @@
 #include <algorithm>
 #include <ranges>
 
-Snake::Snake(int xPos, int yPos, const int size, const int speed)
+Snake::Snake(int xPos, int yPos, const int size)
     : Food(xPos, yPos, size)
-    , speed_(speed)
-    , head_(sf::Vector2f(size_ * 0.8, size_ * 0.8))
 {
     tailPosition_.reserve(20);
     for(size_t i = 0; i < lenght_ - 1; i++)
@@ -13,25 +11,6 @@ Snake::Snake(int xPos, int yPos, const int size, const int speed)
         tailPosition_.push_back(position_);
         tailPosition_[i].first -= static_cast<int>(i) * static_cast<int>(CELL_SIZE);
     }
-    head_.setOrigin(size_ * 0.4 , size_ * 0.4);
-    head_.setFillColor(sf::Color::Blue);
-    head_.setOutlineThickness(size_ * 0.2);
-    head_.setOutlineColor(sf::Color::Yellow);
-};
-
-Direction Snake::control()
-{
-    using enum Direction;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        return Up;
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        return Down;
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        return Left;
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        return Right;
-    else
-        return direction_;
 }
 
 bool Snake::checkFoodAndSnakeCollision(Food& food)
@@ -56,22 +35,6 @@ bool Snake::isTailAte()
         return true;
     }
     return false;
-}
-
-void Snake::draw(sf::RenderWindow& i_window)
-{
-    head_.setPosition(position_.first, position_.second);
-    
-    i_window.draw(head_);
-
-    for(auto element : tailPosition_)
-    {
-        sf::RectangleShape rectangleTail(sf::Vector2f(size_*0.8 , size_*0.8));
-        rectangleTail.setOrigin(size_ * 0.4 , size_ * 0.4);
-        rectangleTail.setFillColor(sf::Color::Green);
-        rectangleTail.setPosition(element.first, element.second);
-        i_window.draw(rectangleTail);
-    }
 }
 
 void Snake::update(const Direction newDirection)
@@ -108,16 +71,16 @@ void Snake::move()
     switch(direction_)
     {
         case Up:
-            position_.second -= speed_ * CELL_SIZE;
+            position_.second -= CELL_SIZE;
             break;
         case Down:
-            position_.second += speed_ * CELL_SIZE;
+            position_.second += CELL_SIZE;
             break;
         case Left:
-            position_.first -= speed_ * CELL_SIZE;
+            position_.first -= CELL_SIZE;
             break;
         case Right:
-            position_.first += speed_ * CELL_SIZE;
+            position_.first += CELL_SIZE;
             break;
     }
    
