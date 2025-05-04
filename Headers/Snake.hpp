@@ -16,7 +16,7 @@ public:
     Snake() = delete;
     Snake(int xPos, int yPos, const int size);
     virtual ~Snake() = default;
-    bool checkFoodAndSnakeCollision(const Food& food);
+    bool checkFoodAndSnakeCollision(const Food& food) const;
     void move();
     size_t getLength() const { return lenght_; };
     Direction getDirection() const { return this->direction_; };

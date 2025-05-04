@@ -10,6 +10,7 @@ class Renderable
 {
 public:
     virtual ~Renderable() = default;
+    Renderable() = default;
     virtual void updatePosition() = 0;
     virtual void draw(sf::RenderWindow& window) const = 0;
 };

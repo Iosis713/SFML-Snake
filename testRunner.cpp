@@ -5,6 +5,7 @@
 #include "Headers/Food.hpp"
 #include "Headers/Snake.hpp"
 #include "Headers/Config.hpp"
+#include "Headers/RenderingUtils.hpp"
 
 class FoodMock : public Food
 {
@@ -34,6 +35,20 @@ class SnakeFixture : public testing::Test
 {
 public:
     Snake snake{60, 180, CELL_SIZE};
+};
+
+class RenderableMock : public Renderable
+{
+public:
+    RenderableMock() = default;
+    MOCK_METHOD(void, updatePosition, (), (override));
+    MOCK_METHOD(void, draw, (sf::RenderWindow& window), (const, override));
+};
+
+class RenderEngineFixture : public testing::Test
+{
+public:
+    RenderEngine renderEngineFixture{};
 };
 
 TEST_F(FoodMockFixture, killTest)
@@ -101,6 +116,20 @@ TEST_F(SnakeFixture, directionNotChanged)
     snake.update(newDirection);
     //THEN
     ASSERT_NE(snake.getDirection(), newDirection);
+}
+
+TEST_F(RenderEngineFixture, renderTest)
+{
+    //GIVEN
+    auto mock = std::make_shared<RenderableMock>();
+    renderEngineFixture.addEntity(mock);
+    EXPECT_CALL(*mock, updatePosition())
+        .Times(1);
+    EXPECT_CALL(*mock, draw(testing::_))
+        .Times(1);
+    
+    //WHEN
+    renderEngineFixture.render();    
 }
 
 int main(int argc, char** argv)

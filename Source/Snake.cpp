@@ -13,7 +13,7 @@ Snake::Snake(int xPos, int yPos, const int size)
     }
 }
 
-bool Snake::checkFoodAndSnakeCollision(const Food& food)
+bool Snake::checkFoodAndSnakeCollision(const Food& food) const
 {
     if (std::ranges::any_of(tailPosition_, [&](const auto& tailElement)
             {
