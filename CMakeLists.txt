@@ -13,12 +13,14 @@ set(SFML_LIB    sfml-graphics
 set(SRC_MOD     Modules/Food.cppm
                 Modules/Snake.cppm
                 Modules/Controller.cppm
-                Modules/RenderingUtils.cppm)
+                Modules/RenderingUtils.cppm
+                Modules/NeuralNetwork.cppm)
 
 set(SRC Source/Food.cpp
         Source/Snake.cpp
         Source/Controller.cpp
-        Source/RenderingUtils.cpp)
+        Source/RenderingUtils.cpp
+        Source/NeuralNetwork.cpp)
 
 
 set(GMOCK_LIBRARIES     /usr/lib/libgmock.a     /usr/lib/libgmock_main.a)
