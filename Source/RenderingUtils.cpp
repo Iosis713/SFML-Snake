@@ -31,10 +31,13 @@ void RenderEngine::render()
 void SnakeRenderer::draw(sf::RenderWindow& window) const
 {
     if (shape_)
+    {
         window.draw(*shape_);
-    
+    }
     for (const auto& tailElement : tail_)
         window.draw(tailElement);
+
+    window.draw(score_);
 }
 
 void SnakeRenderer::updateTail()
@@ -59,4 +62,5 @@ void SnakeRenderer::updatePosition()
         const auto [xPos, yPos] = target_->getTailPosition().at(i);
         tail_[i].setPosition(xPos, yPos);
     }
+    score_.setString("Score: " + std::to_string(target_->getScore()));
 };

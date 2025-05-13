@@ -52,6 +52,8 @@ export class SnakeRenderer : public Renderer<Snake>
 {
 protected:
     std::vector<sf::RectangleShape> tail_;
+    sf::Font scoreFont_;
+    sf::Text score_;
 
 public:
     SnakeRenderer() = delete;
@@ -73,6 +75,13 @@ public:
             rectangleTail.setPosition(tailElement.first, tailElement.second);
             tail_.push_back(rectangleTail);
         }
+        scoreFont_.loadFromFile("../Fonts/Arial.ttf");
+        score_.setFont(scoreFont_);
+        score_.setFillColor(sf::Color::Magenta);
+        score_.setCharacterSize(24);
+        score_.setStyle(sf::Text::Bold);
+        score_.setPosition(sf::Vector2f(0.0f, 0.0f));
+
     };
     ~SnakeRenderer() = default;
 

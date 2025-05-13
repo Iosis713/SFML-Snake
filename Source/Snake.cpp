@@ -139,6 +139,7 @@ bool Snake::isFoodAte(Food& food)
         {
             food.kill();
         }
+        score_++;
         return true;
     }
     else
