@@ -21,6 +21,7 @@ public:
     virtual ~OutputNeuron() = default;
     float getValue() const { return this->value_; };
     void setValue(const float value) { this->value_ = value; };
+    size_t index() const { return this->index_; };
 };
 
 export class Neuron : public OutputNeuron
@@ -54,13 +55,17 @@ public:
     
     std::vector<Neuron>& getNeurons() { return neurons_; };
 
-    /*template<typename NeuronClass>
+    template<typename NeuronClass>
     void calculateTargetNeuron(NeuronClass& targetNeuron)
     {
+        float resultValue = 0.0f;
+        const size_t targetIndex = targetNeuron.index();
+        
         for(const auto& sourceNeuron : neurons_)
         {
-
+            resultValue += sourceNeuron.getValue() * sourceNeuron.getWeights().at(targetIndex);    
         }
+        targetNeuron.setValue(resultValue);
     }
-    */
+    
 };

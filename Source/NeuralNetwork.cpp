@@ -31,6 +31,11 @@ void Layer::calculateTargetLayer(Layer& targetLayer)
         }))
     {
         throw std::runtime_error("Different weights and targetLayer size!");
-    }            
+    }
+
+    for (auto& targetNeuron : targetLayer.getNeurons())
+    {
+        this->calculateTargetNeuron(targetNeuron);
+    }
 }
 
